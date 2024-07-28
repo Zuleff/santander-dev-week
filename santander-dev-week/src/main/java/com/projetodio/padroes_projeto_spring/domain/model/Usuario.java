@@ -42,6 +42,4 @@ public class Usuario {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-   
-
 }

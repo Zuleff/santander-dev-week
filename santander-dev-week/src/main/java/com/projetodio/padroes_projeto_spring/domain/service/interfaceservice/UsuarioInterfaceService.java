@@ -41,16 +41,16 @@ public class UsuarioInterfaceService implements UsuarioService {
     @Override
     @Transactional(readOnly = true)
     public Usuario create(Usuario userToCreate) {
-        ofNullable(userToCreate).orElseThrow(() -> new ExcecaoNegocios("User to create must not be null."));
-        ofNullable(userToCreate.getCartao()).orElseThrow(() -> new ExcecaoNegocios("User account must not be null."));
-        ofNullable(userToCreate.getCartao()).orElseThrow(() -> new ExcecaoNegocios("User card must not be null."));
+        ofNullable(userToCreate).orElseThrow(() -> new ExcecaoNegocios("Usuário nulo"));
+        ofNullable(userToCreate.getConta()).orElseThrow(() -> new ExcecaoNegocios("O valor da conta está nulo"));
+        ofNullable(userToCreate.getCartao()).orElseThrow(() -> new ExcecaoNegocios("O valor do cartão está nulo"));
 
         this.validateChangeableId((Long) userToCreate.getId(), "created");
-        if (usuarioRepository.existsByAccountNumber(userToCreate.getConta().getNumero())) {
-            throw new ExcecaoNegocios("This account number already exists.");
+        if (usuarioRepository.existsByContaNumero(userToCreate.getConta().getNumero())) {
+            throw new ExcecaoNegocios("Já existe uma conta com esse número.");
         }
-        if (usuarioRepository.existsByCardNumber(userToCreate.getCartao().getNumero())) {
-            throw new ExcecaoNegocios("This card number already exists.");
+        if (usuarioRepository.existsByCartaoNumero(userToCreate.getCartao().getNumero())) {
+            throw new ExcecaoNegocios("Já existe um cartão com esse número.");
         }
         return this.usuarioRepository.save(userToCreate);
     }
@@ -58,10 +58,10 @@ public class UsuarioInterfaceService implements UsuarioService {
     @Override
     @Transactional
     public Usuario update(Long id, Usuario userToUpdate) {
-        this.validateChangeableId(id, "updated");
+        this.validateChangeableId(id, "Atualizado");
         Usuario dbUser = this.findById(id);
         if (!dbUser.getId().equals(userToUpdate.getId())) {
-            throw new ExcecaoNegocios("Update IDs must be the same.");
+            throw new ExcecaoNegocios("Não foi possível atualiar o ID do usuário");
         }
 
         dbUser.setNome(userToUpdate.getNome());
@@ -76,7 +76,7 @@ public class UsuarioInterfaceService implements UsuarioService {
     @Override
     @Transactional
     public void delete(Long id) {
-        this.validateChangeableId(id, "deleted");
+        this.validateChangeableId(id, "deletado");
         Usuario dbUser = this.findById(id);
         this.usuarioRepository.delete(dbUser);
     }
