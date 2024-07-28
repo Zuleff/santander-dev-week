@@ -1,1 +1,42 @@
-# santander-dev-week
+# Satander Dev Week 
+
+## Diagrama de Classes
+
+
+```mermaid
+classDiagram
+    class User {
+        +String name
+        +Account account
+        +List~Feature~ features
+        +Card card
+        +List~News~ news
+    }
+
+    class Account {
+        +String number
+        +String agency
+        +Float balance
+        +Float limit
+    }
+
+    class Feature {
+        +String icon
+        +String description
+    }
+
+    class Card {
+        +String icon
+        +Float limit
+    }
+
+    class News {
+        +String icon
+        +String description
+    }
+
+    User --> Account
+    User --> Feature
+    User --> Card
+    User --> News
+```
