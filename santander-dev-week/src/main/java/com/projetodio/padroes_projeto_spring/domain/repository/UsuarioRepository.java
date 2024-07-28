@@ -8,4 +8,7 @@ import com.projetodio.padroes_projeto_spring.domain.model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
+    boolean existsByAccountNumber(String number);
+
+    boolean existsByCardNumber(String number);
 }

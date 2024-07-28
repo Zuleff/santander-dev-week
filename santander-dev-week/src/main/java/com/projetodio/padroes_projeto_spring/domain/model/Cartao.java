@@ -20,9 +20,9 @@ public class Cartao {
     private Long id;
 
     @Column(unique = true)
-    private String number;
+    private String numero;
 
-    @Column(scale = 13, precision = 2)
+    @Column(precision = 13, scale = 2)
     private BigDecimal  limite;
 
 }

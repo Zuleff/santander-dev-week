@@ -38,4 +38,10 @@ public class Usuario {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Noticias> noticias;
 
+    public Object getId() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+   
+
 }

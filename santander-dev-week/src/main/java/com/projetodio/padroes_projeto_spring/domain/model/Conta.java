@@ -26,10 +26,10 @@ public class Conta {
 
     private String agencia;
 
-    @Column(scale = 13, precision = 2)
+    @Column(precision = 13, scale = 2)
     private BigDecimal  balanca;
 
-    @Column(scale = 13, precision = 2)
+    @Column(precision = 13, scale = 2)
     private BigDecimal  limite;
 
 }
